@@ -5,6 +5,8 @@ What skit can't do, and why. Most of it is missing from Meta's APIs; the rest si
 ## All platforms
 
 - **Bursts can get an account suspended.** A new Threads account was locked pending appeal after about 15 near-identical test posts and replies through the API in a few hours, then restored. Space publishes out and vary the text.
+- **Local files on Instagram and Threads need `cloudflared`.** Both APIs publish only from a URL Meta fetches, so skit exposes the file through a temporary Cloudflare Quick Tunnel until Meta has it. Keep the machine online until the command returns. The file passes through Cloudflare on its way to Meta. Meta downloads it at your upload speed, so on a slow connection a large video can time out on Meta's side; tested up to 76 MB. Cloudflare calls Quick Tunnels "for testing and development", with no uptime guarantee, and if Meta's fetchers ever start honouring Cloudflare's injected robots.txt, this route stops working. Passing a URL you host always works. Facebook and DMs upload the file directly and don't need it.
+- **HEIC photos** are refused before upload; Meta asks for JPEG. Convert first (macOS: `sips -s format jpeg IN.heic --out OUT.jpg`; elsewhere: `magick IN.heic OUT.jpg`), or host a JPEG.
 
 ## Instagram and Facebook messages
 
