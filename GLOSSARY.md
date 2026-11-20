@@ -11,7 +11,7 @@ One authorization Meta granted to the user's app: a token, who it is for, and wh
 _Avoid_: account, credential, session, token (the token is one part of a login)
 
 **App credentials**:
-The ids and secrets of the user's own Meta developer app, including its Threads app id and secret. Every login is issued by them.
+The ids and secrets of the user's own developer app with a provider: for Meta, the app's id and secret plus its Threads app id and secret. Every login is issued by them.
 _Avoid_: client secrets, app keys
 
 **Asset**:
@@ -27,6 +27,10 @@ _Avoid_: active asset, current account
 **Platform**:
 One of Instagram, Facebook (Pages) or Threads: the first word of every command and the key of every default.
 _Avoid_: service, network, product
+
+**Provider**:
+The company whose developer app, sign-in and API stand behind one or more platforms. Meta provides Instagram, Facebook and Threads; the user holds app credentials per provider, never per platform.
+_Avoid_: vendor, platform (for the company), API
 
 ### Content
 
